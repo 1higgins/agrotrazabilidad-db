@@ -3,7 +3,7 @@ USE agrotrazabilidad_db;
 
 
 CREATE TABLE TIPO_ASOCIACION (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    asociacionID INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(40) NOT NULL UNIQUE
 );
 
@@ -26,6 +26,21 @@ CREATE TABLE PARCELA (
     ubicacion VARCHAR(100) NOT NULL,
     area_total DECIMAL(10,2) NOT NULL
         CHECK (area_total > 0)
+    coord_geoespacial POLYGON NOT NULL
+);
+
+CREATE TABLE LOTE (
+    codigo_lote INT NOT NULL PRIMARY KEY,
+    fecha_siembra DATE NOT NULL,
+    rendimiento DECIMAL(10,2)
+        CHECK (rendimiento >= 0)
+);
+
+CREATE TABLE CULTIVO (
+    cultivoID INT NOT NULL PRIMARY KEY,
+    nombre_cultivo VARCHAR(30) NOT NULL,
+    edad_plantas INT NOT NULL,
+    especie VARCHAR(30) NOT NULL
 
 );
 
